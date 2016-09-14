@@ -36,12 +36,12 @@ char* InputString(char** string) {
 	while (c != '\n');
 	(*string)[stringSize] = '\0';*/
 	
-	char s[256];
+	char s[6];
 	char* p = s;
 	int n = 0;
 	
 	while ((*p++=getchar ()) != '\n')
-		if (++n == 255) {
+		if (++n == 5) {
 			n = 0;
 			*p = '\0';
 			strcat(*string, s);
