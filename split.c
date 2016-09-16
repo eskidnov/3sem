@@ -7,51 +7,34 @@ char* InputString(char** string);
 
 
 int main() {
-	char* s = "\0";
-	char delimiters[] = " ;";
+	char* s;
+	char* delimiters;
 	char** tokens;
 	int num;
 	int i;
 	
-	printf("%s", InputString(&s));
-	/*Split(s, delimiters, &tokens, &num);
-	for(i = 0; i < num; i++) {
-		printf("%s\n", *(tokens+i));
-	}*/
+	printf("> Write delimiter(s):\n");
+	InputString(&delimiters);
+	printf("> Write a string:\n");
+	Split(InputString(&s), delimiters, &tokens, &num);
+	printf("> All words from the string:\n");
+	for(i = 0; i < num; i++)
+		printf("> %d: %s\n", i+1, tokens[i]);
 
 	return 0;
 }
 
 
 char* InputString(char** string) {
-	/*int stringSize = 0;
 	char c;
 	
-	do {
-		*string = (char*) realloc(*string, stringSize+1);
-		c = getchar();		
-		(*string)[stringSize] = c;
-		stringSize++;
-	}
-	while (c != '\n');
-	(*string)[stringSize] = '\0';*/
-	
-	char s[6];
-	char* p = s;
-	int n = 0;
-	
-	while ((*p++=getchar ()) != '\n')
-		if (++n == 5) {
-			n = 0;
-			*p = '\0';
-			strcat(*string, s);
-			p = s;
-		}
-	if (*p != 'v') {
-		*p = '\0';
-		*string = (char*) malloc(strlen(s));
-		strcat(*string, s);
-	}
+	*string = (char*) malloc(1);
+	(*string)[0] = '\0';
+	while ((c = getchar()) != '\n') {
+		*string = (char*) realloc(*string, 2+strlen(*string));
+		strcat(*string, &c);
+		(*string)[strlen(*string)] = '\0';		
+	}	
 
 	return *string;
 }
@@ -60,15 +43,15 @@ char* InputString(char** string) {
 void Split(char* string, char* delimiters, char*** tokens, int* tokensCount) {
 	int j;
 	char* token;
-	char* saveptr;
-	
+
+	*tokens = (char**) malloc(sizeof(char*));
 	for (j = 0; ; j++, string = NULL) {
-    	token = strtok_r(string, delimiters, &saveptr);
-        if (token == NULL)
-        	break;
-		//*tokens = (char**) realloc(*tokens, sizeof(char*));
-		//strcpy(*(*tokens+j), token);
-		printf("%d", j);
+        if ((token = strtok(string, delimiters)) == NULL)        
+			break;
+		*tokens = (char**) realloc(*tokens, (j+1)*sizeof(char*));
+		(*tokens)[j] = (char*) malloc(1);
+		(*tokens)[j] = (char*) realloc((*tokens)[j], strlen(token)+1);
+		strcpy((*tokens)[j], token);
 	}
-	//*tokensCount = j;
+	*tokensCount = j;
 }
