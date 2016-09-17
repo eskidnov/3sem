@@ -5,7 +5,6 @@
 void Split(char* string, char* delimiters, char*** tokens, int* tokensCount);
 char* InputString(char** string);
 
-
 int main() {
 	char* s;
 	char* delimiters;
@@ -18,6 +17,9 @@ int main() {
 	printf("> Write a string:\n");
 	Split(InputString(&s), delimiters, &tokens, &num);
 	printf("> All words from the string:\n");
+  /*
+   * i+1 -> i + 1
+   */
 	for(i = 0; i < num; i++)
 		printf("> %d: %s\n", i+1, tokens[i]);
 
@@ -31,7 +33,7 @@ char* InputString(char** string) {
 	*string = (char*) malloc(1);
 	(*string)[0] = '\0';
 	while ((c = getchar()) != '\n') {
-		*string = (char*) realloc(*string, 2+strlen(*string));
+		*string = (char*) realloc(*string, 2 + strlen(*string));
 		strcat(*string, &c);
 		(*string)[strlen(*string)] = '\0';		
 	}	
@@ -43,6 +45,10 @@ char* InputString(char** string) {
 void Split(char* string, char* delimiters, char*** tokens, int* tokensCount) {
 	int j;
 	char* token;
+  /*
+   * прочитайте внимательно, как работает strtok: он модифицирует исходную строку, так что нет необходимости дополнительно выделять память под 
+   * отдельные слова.
+   */
 
 	*tokens = (char**) malloc(sizeof(char*));
 	for (j = 0; ; j++, string = NULL) {
