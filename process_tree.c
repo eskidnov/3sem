@@ -13,7 +13,7 @@ int main() {
 	int status;
 	int p = 0, pCopy = 0;
 	int depth = 1;
-
+	//Программа не работает! Есть подозрения, что ошибка
 	printf("> Write process tree: ");
 	InputTree(&tree);
 	printf("> Your process tree:\n");
@@ -27,7 +27,7 @@ int main() {
 			printf("pid: %d\n", getpid());
 			pCopy = p;			
 			if (p != 0)
-				p += tree[pCopy];
+				p += tree[pCopy]; //здесь.
 			else
 				p = 1; 
 			depth++;		
