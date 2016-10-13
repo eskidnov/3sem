@@ -8,7 +8,7 @@
 #define N 2
 
 struct Segment {
-	int begin;
+    int begin;
 	int end;
 	int index;
 };
