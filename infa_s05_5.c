@@ -7,8 +7,7 @@
 #define SIZE 100
 #define N 2
 
-struct Segment
-{
+struct Segment {
 	int begin;
 	int end;
 	int index;
