@@ -1,0 +1,5 @@
+cup:1
+dish:1
+fork:1
+knife:5
+spoon:5
