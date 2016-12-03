@@ -7,6 +7,10 @@
 #include <fcntl.h>
 #include <errno.h>
 
+/*
+ * Расскажите на семинаре, что здесь происходит
+ */
+
 int out_char = 0, counter = 128;
 pid_t pid;
 

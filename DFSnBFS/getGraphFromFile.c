@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+/*
+ * инклюдят только заголовочный *.h
+ * давайте я на семинаре вам поясню подробнее
+ */
 #include "split.c"
 
 void getGraphFromFile(FILE *f, int*** graph, int* n) {

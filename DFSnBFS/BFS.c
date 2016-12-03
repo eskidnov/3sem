@@ -15,6 +15,7 @@ int main() {
     BFS(graph, n);
     return 0;
 }
+
 //НЕ РАБОТАЕТ
 void BFS(int** graph, int n) {
     int j;
@@ -28,6 +29,10 @@ void BFS(int** graph, int n) {
         j = 0;        
         if (!visited[front(q)]) {
             visited[front(q)] = 1;
+            /*
+             * у вас неправильная логика программы, поэтому и не работает.
+             * давайте на семинаре обсудим.
+             */
             while ((!graph[front(q)][j] || visited[j]) && j < n) {
                 pop(&q);
                 push(&q, j); 
